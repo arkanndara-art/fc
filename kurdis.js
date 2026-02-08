@@ -46,7 +46,8 @@ function KKeyPress()
    //if in Kurdi mode:
    if (lang == 1) {
       if (key == 0x0020 && window.event.shiftKey)
-         window.event.keyCode = 0x200C;      	 
+         window.event.keyCode = 0x200C;
+      	 
       else 
          window.event.keyCode = kurdikey[key - 0x0020];
    }
