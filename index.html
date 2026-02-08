@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>وەرگێڕی فۆنت - Arkan Dara</title> 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&family=Lateef&family=Harmattan&family=Reem+Kufi&display=swap" rel="stylesheet">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
@@ -15,120 +14,53 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; transition: 0.2s; }
         body { background: #f4f7f6; min-height: 100vh; display: flex; flex-direction: column; }
         body.dark-mode { background: #121212; color: #ffffff; }
-
-        .header { 
-            background: white; padding: 10px 20px; border-bottom: 3px solid #2e7d32; 
-            display: grid; 
-            grid-template-columns: 130px 1.5fr auto 0.5fr auto; 
-            align-items: center;
-            position: sticky; top: 0; z-index: 1000; gap: 15px;
-        }
+        .header { background: white; padding: 10px 20px; border-bottom: 3px solid #2e7d32; display: grid; grid-template-columns: 140px 1.5fr auto 0.5fr auto; align-items: center; position: sticky; top: 0; z-index: 1000; gap: 15px; }
         .dark-mode .header { background: #1e1e1e; border-bottom-color: #4caf50; }
-
-        .h-right { font-family: 'Amiri', serif; font-weight: bold; color: #2e7d32; font-size: 14px; white-space: nowrap; }
+        .h-right { font-family: 'Amiri', serif; font-weight: bold; color: #2e7d32; font-size: 13px; white-space: nowrap; }
         .dark-mode .h-right { color: #4caf50; }
-
-        .h-news { overflow: hidden; border-right: 1px solid #ddd; padding-right: 15px; max-width: 100%; }
+        .h-news { overflow: hidden; border-right: 1px solid #ddd; padding-right: 15px; }
         #news-link { text-decoration: none; color: #555; font-size: 13px; display: block; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
-        .dark-mode #news-link { color: #bbb; }
         .source-tag { color: #d32f2f; font-weight: bold; }
-
-        .h-center { text-align: center; display: flex; flex-direction: column; justify-content: center; padding: 0 10px; }
-        .h-center h1 { font-family: 'Amiri', serif; font-size: 1.2rem; color: #2e7d32; margin: 0; line-height: 1; }
-        .h-center span { font-size: 11px; color: #777; font-weight: bold; }
-        .dark-mode .h-center h1 { color: #4caf50; }
-
+        .h-center h1 { font-family: 'Amiri', serif; font-size: 1.2rem; color: #2e7d32; margin: 0; }
         .h-left { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
-        .stat-item { font-size: 11px; font-weight: bold; color: #555; background: #eee; padding: 5px 8px; border-radius: 6px; cursor: pointer; white-space: nowrap; }
+        .stat-item { font-size: 11px; font-weight: bold; color: #555; background: #eee; padding: 5px 8px; border-radius: 6px; cursor: pointer; }
         .dark-mode .stat-item { background: #333; color: #ddd; }
-        
-        .font-ctrl { display: flex; gap: 2px; background: #eee; border-radius: 6px; padding: 2px; }
-        .dark-mode .font-ctrl { background: #333; }
-        .font-btn { border: none; background: none; padding: 2px 6px; cursor: pointer; font-weight: bold; color: #333; font-size: 12px; }
-        .dark-mode .font-btn { color: white; }
-
-        .market-wrap { position: relative; }
-        .market-drop { 
-            display: none; position: absolute; top: 35px; left: 0; background: white; 
-            min-width: 190px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
-            padding: 10px; border-radius: 8px; z-index: 100;
-        }
-        .dark-mode .market-drop { background: #252525; border: 1px solid #444; }
-        .market-drop div { font-size: 12px; padding: 4px 0; border-bottom: 1px solid #eee; color: #333; }
-        .dark-mode .market-drop div { border-bottom-color: #333; color: #eee; }
-        .show { display: block; }
-
-        .container { flex: 1; display: flex; flex-direction: column; padding: 10px; gap: 1px; max-width: 100%; margin: 0 auto; width: 100%; }
-        textarea { flex: 1; min-height: 400px; padding: 20px; border-radius: 7px; border: 2px solid #ddd; font-size: 20px; line-height: 1.8; resize: none; text-align: right; direction: rtl; outline: none; }
+        .container { flex: 1; display: flex; flex-direction: column; padding: 10px; gap: 5px; }
+        textarea { flex: 1; min-height: 400px; padding: 20px; border-radius: 7px; border: 2px solid #ddd; font-size: 20px; text-align: right; direction: rtl; outline: none; }
         .dark-mode textarea { background: #1e1e1e; color: #eee; border-color: #333; }
-        
-        .btn-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 7px; margin-top: 2px; }
-        button, .btn-file { padding: 7px; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; color: white; font-size: 14px; text-align: center; }
+        .btn-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 7px; }
+        button, .btn-file { padding: 10px; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; color: white; font-size: 14px; text-align: center; }
         .btn-uni { background: #4caf50; } .btn-ali { background: #2196f3; } .btn-copy { background: #607d8b; } .btn-clear { background: #f44336; } .btn-file { background: #333; }
-        #status { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 8px 18px; border-radius: 50px; display: none; z-index: 2000; }
-
-        .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
-        .modal-content { background-color: white; margin: 10% auto; padding: 25px; border-radius: 15px; width: 90%; max-width: 500px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3); line-height: 1.6; }
-        .dark-mode .modal-content { background-color: #1e1e1e; color: white; }
-        .modal-header { border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px; font-weight: bold; font-size: 1.2rem; color: #2e7d32; }
-        .dark-mode .modal-header { border-bottom-color: #333; color: #4caf50; }
-        .modal-body { font-size: 15px; }
-        .modal-footer { margin-top: 20px; text-align: left; }
-        .close-btn { background: #2e7d32; padding: 8px 20px; border-radius: 5px; color: white; border: none; cursor: pointer; }
+        .market-drop { display: none; position: absolute; top: 35px; left: 0; background: white; min-width: 190px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; z-index: 100; }
+        .show { display: block; }
+        #status { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 8px 18px; border-radius: 50px; display: none; }
+        .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+        .modal-content { background: white; margin: 15% auto; padding: 20px; border-radius: 10px; width: 80%; max-width: 400px; text-align: center; }
+        .dark-mode .modal-content { background: #1e1e1e; color: white; }
     </style>
 </head>
 <body onload="initApp()">
 
-    <div id="aboutModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">دەربارەی پڕۆژە</div>
-            <div class="modal-body">
-                <p><strong>ناوی گەشەپێدەر:</strong> ئه‌ركان دارا ره‌شید</p>
-                <p><strong>وەشانی پڕۆژەکە:</strong> 2.0</p>
-                <p><strong>بەرواری دروستکردن:</strong> 2026</p>
-                <p><strong>مافی كۆپیكردن:</strong> پارێزراوه‌</p>
-                <hr style="margin: 15px 0; opacity: 0.2;">
-                <p><strong>زانیاری لەسەر بەشەکان:</strong></p>
-                <p>بەشە زیندووەکانی پڕۆژەکە، وەک مانشێتی هەواڵەکان، کات و بەروار، نرخەکان، خۆیان نوێ دەبنەوە.</p>
-            </div>
-            <div class="modal-footer">
-                <button class="close-btn" onclick="toggleAbout()">داخستن</button>
-            </div>
-        </div>
-    </div>
+    <div id="aboutModal" class="modal"><div class="modal-content"><h3>دەربارەی پڕۆژە</h3><p>گەشەپێدەر: ئەرکان دارا</p><button onclick="toggleAbout()">داخستن</button></div></div>
 
     <div class="header">
-        <div class="h-right" id="clock">...</div>
-        <div class="h-news">
-            <a id="news-link" href="#" target="_blank">لۆدکردنی هەواڵەکان...</a>
-        </div>
-        <div class="h-center">
-            <h1>وەرگێڕی فۆنت</h1>
-            <span>Arkan Dara</span>
-        </div>
-        <div style="flex: 1;"></div>
+        <div class="h-right" id="clock">لۆدکردنی کات...</div>
+        <div class="h-news"><a id="news-link" href="#" target="_blank">لۆدکردنی هەواڵەکان...</a></div>
+        <div class="h-center"><h1>وەرگێڕی فۆنت</h1><span>Arkan Dara</span></div>
         <div class="h-left">
             <select class="stat-item" id="fontSelect" onchange="changeFont()">
-                <option value="'Noto Sans Arabic', sans-serif">فۆنتی نۆتۆ</option>
-                <option value="'Amiri', serif">فۆنتی ئەمیری</option>
-                <option value="'Lateef', cursive">فۆنتی لەتیف</option>
-                <option value="'Reem Kufi', sans-serif">فۆنتی ڕیم کوفی</option>
+                <option value="'Noto Sans Arabic'">فۆنتی نۆتۆ</option>
+                <option value="'Amiri'">فۆنتی ئەمیری</option>
             </select>
-            <div class="font-ctrl">
-                <button class="font-btn" onclick="changeFontSize(2)">A+</button>
-                <button class="font-btn" onclick="changeFontSize(-2)">A-</button>
-            </div>
-            <div class="market-wrap">
-                <div class="stat-item" onclick="toggleM()">📊 بۆرسە</div>
-                <div id="mDrop" class="market-drop">
-                    <div id="gold">🟡 زێڕ: ...</div>
-                    <div id="oil-brent">🛢️ برێنت: ...</div>
-                </div>
+            <div class="stat-item" onclick="toggleM()">📊 بۆرسە</div>
+            <div id="mDrop" class="market-drop">
+                <div id="gold">🟡 زێڕ: ...</div>
+                <div id="oil-brent">🛢️ نەوت: ...</div>
             </div>
             <div class="stat-item" id="weather">🌡️ --°C</div>
             <div class="stat-item" id="textStats">وشە: ٠</div>
-            <div style="cursor:pointer; font-size:18px;" onclick="toggleT()">🌙</div>
-            <div style="cursor:pointer; font-size:18px;" onclick="toggleAbout()">ℹ️</div>
+            <div style="cursor:pointer;" onclick="toggleT()">🌙</div>
+            <div style="cursor:pointer;" onclick="toggleAbout()">ℹ️</div>
         </div>
     </div>
 
@@ -146,94 +78,81 @@
     <div id="status"></div>
 
 <script>
-    // کۆدی سەرەکی خوێندنەوەی فایل
-    async function handleFileUpload(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        const extension = file.name.split('.').pop().toLowerCase();
-
-        if (extension === 'pdf') {
-            showStatus("خەریکی خوێندنەوەی PDF...");
-            const arrayBuffer = await file.arrayBuffer();
-            const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
-            let fullText = "";
-            for (let i = 1; i <= pdf.numPages; i++) {
-                const page = await pdf.getPage(i);
-                const content = await page.getTextContent();
-                fullText += content.items.map(item => item.str).join(" ") + "\n";
-            }
-            document.getElementById("textBox").value = fullText;
-        } 
-        else if (extension === 'docx') {
-            showStatus("خەریکی خوێندنەوەی Word...");
-            const arrayBuffer = await file.arrayBuffer();
-            const result = await mammoth.extractRawText({arrayBuffer: arrayBuffer});
-            document.getElementById("textBox").value = result.value;
-        } 
-        else {
-            reader.onload = function(e) {
-                document.getElementById("textBox").value = e.target.result;
-            };
-            reader.readAsText(file);
+    // کۆدی هەواڵەکان
+    let newsList = []; let nIdx = 0;
+    async function getNews() {
+        const urls = [{n:'رووداو', u:'https://www.rudaw.net/sorani/rss'},{n:'الجزیرة', u:'https://www.aljazeera.net/rss'}];
+        for(let s of urls) {
+            try {
+                const r = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(s.u)}`);
+                const d = await r.json();
+                d.items.forEach(i => newsList.push({t:i.title, l:i.link, s:s.n}));
+            } catch(e){}
         }
-        updateStats();
-        showStatus("✅ فایلەکە بە سەرکەوتوویی هێنرا");
+        showNextNews();
+    }
+    function showNextNews() {
+        if(!newsList.length) return;
+        const el = document.getElementById('news-link');
+        el.innerHTML = `<span class="source-tag">${newsList[nIdx].s}:</span> ${newsList[nIdx].t}`;
+        el.href = newsList[nIdx].l;
+        nIdx = (nIdx + 1) % newsList.length;
     }
 
-    // لێرە فایلە دەرەکییەکانت بانگ دەکەین ئەگەر پێویست بکات
-    // تێبینی: کۆدی گۆڕین لێرە دانراوە بۆ ئەوەی خێرا بێت
-    const conversionMap = [
-        { uni: 'ڵ', ali: 'لِ' }, { uni: 'ڕ', ali: 'رِ' }, { uni: 'ژ', ali: 'ذ' }, { uni: 'ۆ', ali: 'وَ' },
-        { uni: 'پ', ali: 'ث' }, { uni: 'چ', ali: 'ض' }, { uni: 'گ', ali: 'ط' }, { uni: 'ڵ', ali: 'لَ' },
-        { uni: 'ڤ', ali: 'ظ' }, { uni: 'ێ', ali: 'يَ' }, { uni: 'ۆ', ali: 'وِ' }, { uni: 'ڕ', ali: 'رَِ' },
-        { uni: 'ە', ali: 'ة' }, { uni: 'ی', ali: 'ي' }, { uni: 'ک', ali: 'ك' },
-    ];
+    // کۆدی کات و ڕۆژەکانی هەفتە
+    function updateClock() {
+        const n = new Date();
+        const days = ["یەکشەممە","دووشەممە","سێشەممە","چوارشەممە","پێنجشەممە","هەینی","شەممە"];
+        document.getElementById('clock').innerText = `${days[n.getDay()]} ${n.toLocaleTimeString('en-GB',{hour12:false})}`;
+    }
 
+    // کۆدی خوێندنەوەی فایل
+    async function handleFileUpload(event) {
+        const file = event.target.files[0]; if(!file) return;
+        const ext = file.name.split('.').pop().toLowerCase();
+        showStatus("خەریکی خوێندنەوەی فایل...");
+        if(ext === 'pdf') {
+            const pdf = await pdfjsLib.getDocument(await file.arrayBuffer()).promise;
+            let t = ""; for(let i=1;i<=pdf.numPages;i++) { const p = await pdf.getPage(i); const c = await p.getTextContent(); t += c.items.map(it => it.str).join(" "); }
+            document.getElementById("textBox").value = t;
+        } else if(ext === 'docx') {
+            const res = await mammoth.extractRawText({arrayBuffer: await file.arrayBuffer()});
+            document.getElementById("textBox").value = res.value;
+        } else {
+            const r = new FileReader(); r.onload = e => document.getElementById("textBox").value = e.target.result; r.readAsText(file);
+        }
+        showStatus("✅ فایلەکە هێنرا"); updateStats();
+    }
+
+    // وەرگێڕان
+    const conversionMap = [{uni:'ڵ', ali:'لِ'}, {uni:'ڕ', ali:'رِ'}, {uni:'ژ', ali:'ذ'}, {uni:'ۆ', ali:'وَ'}, {uni:'پ', ali:'ث'}, {uni:'چ', ali:'ض'}, {uni:'گ', ali:'ط'}, {uni:'ڤ', ali:'ظ'}, {uni:'ێ', ali:'يَ'}, {uni:'ە', ali:'ة'}];
     function convert(type) {
-        let box = document.getElementById("textBox");
-        let text = box.value;
-        conversionMap.forEach(item => {
-            text = text.replace(new RegExp(type === 'toUni' ? item.ali : item.uni, 'g'), type === 'toUni' ? item.uni : item.ali);
-        });
-        box.value = text;
-        updateStats();
-        showStatus(type === 'toUni' ? "✅ کرا بە یونیکۆد" : "🔃 کرا بە عەلی کەی");
+        let b = document.getElementById("textBox"); let t = b.value;
+        conversionMap.forEach(i => t = t.replace(new RegExp(type==='toUni'?i.ali:i.uni,'g'), type==='toUni'?i.uni:i.ali));
+        b.value = t; showStatus("✅ گۆڕدرا");
     }
 
-    // بەشەکانی تری وەک کات و هەواڵ و بۆرسە
-    let currentSize = 20;
-    function changeFontSize(delta) { currentSize += delta; document.getElementById('textBox').style.fontSize = currentSize + 'px'; }
-    function changeFont() { document.getElementById('textBox').style.fontFamily = document.getElementById('fontSelect').value; }
-    function toggleAbout() { const m = document.getElementById("aboutModal"); m.style.display = (m.style.display === "block") ? "none" : "block"; }
-    function toggleM() { document.getElementById("mDrop").classList.toggle("show"); }
-    function toggleT() { document.body.classList.toggle('dark-mode'); }
-    function showStatus(m) { const s = document.getElementById("status"); s.innerText=m; s.style.display="block"; setTimeout(()=>s.style.display="none",2000); }
-    function copyText() { navigator.clipboard.writeText(document.getElementById("textBox").value); showStatus("📋 کۆپی کرا"); }
-    function clearText() { if(confirm("سڕینەوە؟")) { document.getElementById("textBox").value=""; updateStats(); } }
-    
-    function updateStats() {
-        const text = document.getElementById('textBox').value.trim();
-        const words = text ? text.split(/\s+/).length : 0;
-        document.getElementById('textStats').innerText = `وشە: ${words}`;
-    }
-
-    async function initApp() {
-        setInterval(() => {
-            const n = new Date();
-            document.getElementById('clock').innerText = n.toLocaleTimeString('en-GB');
-        }, 1000);
-        updateWeather();
-    }
-
-    async function updateWeather() {
+    // بۆرسە و کەشوهەوا
+    async function updateMarket() {
         try {
-            const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=35.56&longitude=45.42&current_weather=true`);
-            const d = await r.json();
-            document.getElementById('weather').innerText = `🌡️ ${Math.round(d.current_weather.temperature)}°C`;
+            const r = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=PAXGUSDT');
+            const d = await r.json(); document.getElementById('gold').innerText = `🟡 زێڕ: $${parseFloat(d.price).toFixed(0)}`;
         } catch(e){}
     }
+
+    function initApp() {
+        setInterval(updateClock, 1000);
+        getNews(); setInterval(showNextNews, 7000);
+        updateMarket(); updateClock();
+    }
+    function toggleAbout() { const m = document.getElementById("aboutModal"); m.style.display = (m.style.display==="block")?"none":"block"; }
+    function toggleM() { document.getElementById("mDrop").classList.toggle("show"); }
+    function toggleT() { document.body.classList.toggle('dark-mode'); }
+    function copyText() { navigator.clipboard.writeText(document.getElementById("textBox").value); showStatus("📋 کۆپی کرا"); }
+    function clearText() { if(confirm("سڕینەوە؟")) document.getElementById("textBox").value=""; }
+    function updateStats() { const t = document.getElementById('textBox').value.trim(); document.getElementById('textStats').innerText = `وشە: ${t?t.split(/\s+/).length:0}`; }
+    function changeFont() { document.getElementById('textBox').style.fontFamily = document.getElementById('fontSelect').value; }
+    function showStatus(m) { const s = document.getElementById("status"); s.innerText=m; s.style.display="block"; setTimeout(()=>s.style.display="none",2000); }
 </script>
 </body>
 </html>
