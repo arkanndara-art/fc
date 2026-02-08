@@ -86,10 +86,11 @@
                 <p><strong>ناوی گەشەپێدەر:</strong> ئه‌ركان دارا ره‌شید</p>
                 <p><strong>وەشانی پڕۆژەکە:</strong> 2.0</p>
                 <p><strong>بەرواری دروستکردن:</strong> 2026</p>
-                <p><strong>مافی كۆپیكردن:</strong> پارێزراوه‌</p>
+<p><strong>مافی كۆپیكردن:</strong> پارێزراوه‌</p>
                 <hr style="margin: 15px 0; opacity: 0.2;">
                 <p><strong>زانیاری لەسەر بەشەکان:</strong></p>
-                <p>به‌شه‌ زیندووه‌كانی پڕۆژه‌كه، وه‌ك مانشێتی هه‌واڵه‌كان، كات و به‌روار، نرخه‌كان، خۆیان نوێ ده‌بنه‌وه‌ و له‌ سه‌رچاوە و بۆرسە متمانە پێکراوەکانەوە وەرگیراون...</p>
+                <p>به‌شه‌ زیندووه‌كانی پڕۆژه‌كه، وه‌ك مانشێتی هه‌واڵه‌كان، كات و به‌روار، نرخه‌كان، خۆیان نوێ ده‌بنه‌وه‌ و له‌ 
+سه‌رچاوه‌ و بۆرسه‌ متمانه‌ پێكراوه‌كانه‌وه‌ وه‌رگیراون...</p>
             </div>
             <div class="modal-footer">
                 <button class="close-btn" onclick="toggleAbout()">داخستن</button>
@@ -148,7 +149,7 @@
             <button class="btn-uni" onclick="convert('toUni')">✨ یونیکۆد</button>
             <button class="btn-ali" onclick="convert('toAli')">🔄 عەلی کەی</button>
             <label for="fileInput" class="btn-file" style="cursor:pointer;">📁 فایل</label>
-            <input type="file" id="fileInput" accept=".pdf,.docx,.txt" style="display:none;" onchange="handleFile(event)">
+            <input type="file" id="fileInput" accept=".pdf,.docx" style="display:none;">
             <button class="btn-copy" onclick="copyText()">📋 کۆپی</button>
             <button class="btn-clear" onclick="clearText()">🗑️ سڕینەوە</button>
         </div>
@@ -156,39 +157,6 @@
     <div id="status"></div>
 
 <script>
-    // ئەم فەنکشنە بۆ کاراکردنی دوگمەی فایلەکە زیادکرا
-    async function handleFile(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const ext = file.name.split('.').pop().toLowerCase();
-        showStatus("خەریکی خوێندنەوەی فایل...");
-
-        try {
-            if (ext === 'pdf') {
-                const arrayBuffer = await file.arrayBuffer();
-                const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
-                let text = "";
-                for (let i = 1; i <= pdf.numPages; i++) {
-                    const page = await pdf.getPage(i);
-                    const content = await page.getTextContent();
-                    text += content.items.map(s => s.str).join(" ") + "\n";
-                }
-                document.getElementById("textBox").value = text;
-            } else if (ext === 'docx') {
-                const arrayBuffer = await file.arrayBuffer();
-                const result = await mammoth.extractRawText({ arrayBuffer });
-                document.getElementById("textBox").value = result.value;
-            } else {
-                const reader = new FileReader();
-                reader.onload = e => document.getElementById("textBox").value = e.target.result;
-                reader.readAsText(file);
-            }
-            setTimeout(() => { showStatus("✅ فایلەکە بە سەرکەوتوویی هێنرا"); updateStats(); }, 500);
-        } catch (e) {
-            showStatus("❌ هەڵە لە خوێندنەوەی فایل");
-        }
-    }
-
     const conversionMap = [
         { uni: 'ڵ', ali: 'لِ' }, { uni: 'ڕ', ali: 'رِ' }, { uni: 'ژ', ali: 'ذ' }, { uni: 'ۆ', ali: 'وَ' },
         { uni: 'پ', ali: 'ث' }, { uni: 'چ', ali: 'ض' }, { uni: 'گ', ali: 'ط' }, { uni: 'ڵ', ali: 'لَ' },
@@ -277,6 +245,8 @@
             const days = ["یەکشەممە","دووشەممە","سێشەممە","چوارشەممە","پێنجشەممە","هەینی","شەممە"];
             document.getElementById('clock').innerText = `${days[n.getDay()]} ${n.toLocaleTimeString('en-GB',{hour12:false})}`;
         }, 1000);
+updateWeather(); 
+        setInterval(updateWeather, 1800000);
 
         getNews();
         setInterval(showNextNews, 7000);
@@ -288,6 +258,7 @@
 
         document.addEventListener('selectionchange', updateStats);
 
+        // داخستنی موداڵ کاتێک کلیک لە دەرەوە دەکرێت
         window.onclick = function(event) {
             const modal = document.getElementById("aboutModal");
             if (event.target == modal) modal.style.display = "none";
@@ -298,9 +269,12 @@
         const textarea = document.getElementById('textBox');
         const fullText = textarea.value.trim();
         const selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd).trim();
+
         const totalWords = fullText ? fullText.split(/\s+/).length : 0;
         const selectedWords = selectedText ? selectedText.split(/\s+/).length : 0;
+
         const statsEl = document.getElementById('textStats');
+        
         if (selectedWords > 0) {
             statsEl.innerText = `وشە: ${totalWords} (دیاریکراو: ${selectedWords})`;
         } else {
@@ -315,8 +289,23 @@
 
     function toggleM() { document.getElementById("mDrop").classList.toggle("show"); }
     function toggleT() { document.body.classList.toggle('dark-mode'); }
-    function showStatus(m) { const s = document.getElementById("status"); s.innerText=m; s.style.display="block"; setTimeout(()=>s.style.display="none",2000); }
-    function copyText() { navigator.clipboard.writeText(document.getElementById("textBox").value); showStatus("📋 کۆپی کرا"); }
+    function showStatus(m) { const s = document.getElementById("status"); s.innerText=m; s.style.display="block"; setTimeout(() => s.style.display = "none", 2000); }
+    function copyText() {
+    const textarea = document.getElementById("textBox");
+    const start = textarea.selectionStart;
+    const finish = textarea.selectionEnd;
+    
+    // ئەگەر دەقێک سەڵێکت کرابوو، تەنها ئەوە کۆپی دەکات، ئەگەر نا هەمووی
+    const textToCopy = (start !== finish) 
+        ? textarea.value.substring(start, finish) 
+        : textarea.value;
+
+    if (textToCopy) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            showStatus(start !== finish ? "📋 دەقە دیاریکراوەکە کۆپی کرا" : "📋 هەموو دەقەکە کۆپی کرا");
+        });
+    }
+}
     function clearText() { if(confirm("سڕینەوە؟")) { document.getElementById("textBox").value=""; updateStats(); } }
 </script>
 </body>
