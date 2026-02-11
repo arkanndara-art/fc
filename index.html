@@ -118,6 +118,50 @@
     min-width: fit-content; /* وادەکات بەقەدەر درێژی کاتەکە پان ببێتەوە */
 }        #clock:hover { background: rgba(46, 125, 50, 0.1); }
         .dark-mode #dateArea { background: #252525; color: #ddd; }
+/* ڕەنگ و دیزاینی دوگمەی داگرتن */
+.btn-nav-dl { 
+    background: #ccc !important; /* ڕەنگی سوور وەک یوتیوب */
+    box-shadow: 0 2px 5px rgba(255, 0, 0, 0.2);
+}
+
+.btn-nav-dl:hover { 
+    background: #cc0000 !important; 
+    transform: scale(1.05); 
+}
+
+/* ستایلی ناو مۆدێڵ (پەنجەرەکە) کە لە هەنگاوی داهاتوو دروستی دەکەین */
+.dl-input {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: left;
+    direction: ltr;
+    font-size: 14px;
+    outline: none;
+}
+
+.dark-mode .dl-input { 
+    background: #333; 
+    color: white; 
+    border-color: #444; 
+}
+
+.dl-btn {
+    width: 100%;
+    background: #ff0000;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dl-btn:hover { background: #cc0000; }
+.dl-btn:disabled { background: #777; cursor: not-allowed; }
     </style>
 </head>
 <body onload="initApp()">
@@ -206,6 +250,7 @@
         <div class="h-buttons-area">
             <button class="btn-nav btn-nav-font" onclick="toggleFontModal()">🎁  فۆنت</button>
             <button class="btn-nav btn-nav-c4k" onclick="toggleC4kModal()">✨  C4Kurdi</button>
+<button class="btn-nav btn-nav-dl" onclick="toggleDlModal()">📥 داگرتن</button>
         </div>
         <div class="h-center">
             <h1>وەرگێڕی فۆنت و فایل</h1>
@@ -266,7 +311,21 @@
         </div>
     </div>
 </div>
-
+<div id="dlModal" class="modal">
+    <div class="modal-content" style="max-width: 400px;">
+        <div class="modal-header">📥 داگرتنی ڤیدیۆ و دەنگ</div>
+        <div class="modal-body" style="text-align: center;">
+            <p style="font-size: 14px;">لینکی یوتیوب، فەیسبووک، یان تیکتۆک دابنێ و 
+دوای داگرتن؛ كوالێتی ڤیدیۆكه‌ هه‌ڵبژێره‌ و داونڵوود بكه‌:</p>
+            <input type="text" id="videoUrl" class="dl-input" placeholder="https://...">
+            <button id="startDlBtn" onclick="processDownload()" class="dl-btn">دەستپێکردن</button>
+            <p id="dlStatus" style="margin-top: 15px; font-size: 13px; color: #ff0000; font-weight: bold;"></p>
+        </div>
+        <div class="modal-footer">
+            <button class="close-btn" onclick="toggleDlModal()">داخستن</button>
+        </div>
+    </div>
+</div>
 <script>
 // --- مامەڵەکردن لەگەڵ فایلەکان ---
 document.getElementById('fileInput').addEventListener('change', function(e) {
@@ -423,6 +482,8 @@ function initApp() {
         if (event.target == fontModal) fontModal.style.display = "none";
         if (event.target == c4kModal) c4kModal.style.display = "none";
         if (event.target == timeModal) timeModal.style.display = "none";
+const dlModal = document.getElementById("dlModal");
+if (event.target == dlModal) dlModal.style.display = "none";
     }
 }
 
@@ -591,6 +652,56 @@ async function toggleWeatherModal() {
         } catch (error) {
             document.getElementById('desc').innerText = "هەڵە لە پەیوەندی سێرڤەر";
         }
+    }
+}
+
+// فەنکشنی کردنەوەی پەنجەرەکە
+function toggleDlModal() {
+    const m = document.getElementById("dlModal");
+    if(m) m.style.display = (m.style.display === "block") ? "none" : "block";
+}
+
+// فەنکشنی داگرتن بە شێوەی "ڕاستەوخۆ"
+function processDownload() {
+    const urlInput = document.getElementById("videoUrl");
+    let url = urlInput.value.trim();
+    const status = document.getElementById("dlStatus");
+    const btn = document.getElementById("startDlBtn");
+
+    if (!url) {
+        status.style.color = "red";
+        status.innerText = "❌ تکایە سەرەتا لینکێک دابنێ";
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "خەریکی ئامادەکردنم...";
+    status.style.color = "#2e7d32";
+    status.innerText = "⏳ خەریکە لینکەکە ئامادە دەکەم...";
+
+    // بەکارهێنانی سێرڤەری sfrom.net کە ڕاستەوخۆ دەچێتە سەر فایلی داگرتن
+    // ئەمە باشترین سێرڤەرە چونکە زۆر خێرا لینکەکە دەدۆزێتەوە
+    try {
+        const finalUrl = "https://sfrom.net/" + url;
+        
+        // کردنەوەی لە تابێکی نوێ، بەڵام ئەمەیان جیاوازە
+        // چونکە بەکارهێنەر ڕاستەوخۆ دوگمەی Download ی بۆ دێت بێ گەڕان
+        const win = window.open(finalUrl, '_blank');
+        
+        if (win) {
+            status.innerText = "✅ پەڕەی داگرتن کرایەوە، کلیک لە Download بکە.";
+        } else {
+            // ئەگەر براوزەر ڕێگری لە پۆپ ئەپ کرد، ئەم لینکە بەکاربهێنە
+            window.location.href = finalUrl;
+        }
+        
+        urlInput.value = ""; 
+    } catch (error) {
+        status.style.color = "red";
+        status.innerText = "❌ کێشەیەک ڕوویدا، دواتر تاقی بکەرەوە.";
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "داگرتن";
     }
 }
 </script>
