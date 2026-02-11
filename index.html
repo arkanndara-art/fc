@@ -233,8 +233,8 @@
                     <div id="oil-basra" style="border:none;">🇮🇶 بەسڕە: ...</div>
                 </div>
             </div>
-            <div class="stat-item" id="weather">🌡️ --°C</div>
-            <div class="stat-item" id="textStats">وشە: ٠</div>
+<div class="stat-item" id="weather" onclick="toggleWeatherModal()" style="cursor: pointer;">🌡️ --°C</div>         
+   <div class="stat-item" id="textStats">وشە: ٠</div>
             <div style="cursor:pointer; font-size:18px;" onclick="toggleT()">🌙</div>
             <div style="cursor:pointer; font-size:18px;" onclick="toggleAbout()">ℹ️</div>
         </div>
@@ -252,6 +252,20 @@
         </div>
     </div>
     <div id="status"></div>
+
+<div id="weatherModal" class="modal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
+    <div style="background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; margin: 15% auto; padding: 25px; border-radius: 20px; width: 280px; text-align: center; position: relative;">
+        <span onclick="toggleWeatherModal()" style="position: absolute; right: 15px; top: 10px; font-size: 28px; cursor: pointer;">&times;</span>
+        <h3 id="cityName">📍 Sulaymaniyah</h3>
+        <img id="weatherIcon" src="" style="width: 80px;">
+        <div id="temp" style="font-size: 3rem; font-weight: bold; margin: 10px 0;">--°C</div>
+        <div id="desc" style="margin-bottom: 15px;">بارودۆخ</div>
+        <div style="display: flex; justify-content: space-around; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px;">
+            <span>💧 شێ: <b id="humidity">--%</b></span>
+            <span>💨 با: <b id="wind">-- km/h</b></span>
+        </div>
+    </div>
+</div>
 
 <script>
 // --- مامەڵەکردن لەگەڵ فایلەکان ---
@@ -360,7 +374,7 @@ async function updateMarket() {
 
         setTimeout(() => {
             drop.classList.remove("show");
-        }, 6000); 
+        }, 4000); 
     } catch (e) {}
 }
 
@@ -514,11 +528,70 @@ function runTimer(minutes) {
         }
     }, 1000);
 }
-
 function resetTimer() {
     clearInterval(timerRef);
     document.getElementById('timerDisplay').innerText = "00:00";
     showStatus("⏹️ كات ڕاگیرا");
+
+} // لێرەدا فەنکشنی ڕیسێت تەواو دەبێت
+async function toggleWeatherModal() {
+    const modal = document.getElementById('weatherModal');
+    const isVisible = (modal.style.display === 'block');
+    
+    if (isVisible) {
+        modal.style.display = 'none';
+    } else {
+        modal.style.display = 'block';
+        document.getElementById('desc').innerText = "خەریکە زانیارییەکان دەهێنێت...";
+
+        try {
+            const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=35.56&longitude=45.42&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&timezone=auto`);
+            const data = await res.json();
+
+            if (data.current) {
+                const temp = Math.round(data.current.temperature_2m);
+                const humid = data.current.relative_humidity_2m;
+                const wind = data.current.wind_speed_10m;
+                const code = data.current.weather_code;
+
+                document.getElementById('cityName').innerText = `📍 سلێمانی`;
+                document.getElementById('temp').innerText = `${temp}°C`;
+                document.getElementById('humidity').innerText = `${humid}%`;
+                document.getElementById('wind').innerText = `${wind} km/h`;
+                
+                // ڕێكخستنەوەی وەسفەکان بەپێی کۆدە جیهانییەکان (WMO Codes)
+                let statusMsg = "ئاسمانی ساماڵ";
+                let icon = "01d";
+
+                const weatherMap = {
+                    0: ["ئاسمانی ساماڵ", "01d"],
+                    1: ["کەمێک هەور", "02d"],
+                    2: ["نیمچە هەور", "03d"],
+                    3: ["هەوراوی", "04d"],
+                    45: ["تەمومژ", "50d"],
+                    48: ["تەم و مژی بەستوو", "50d"],
+                    51: ["نەرمە باران", "10d"],
+                    61: ["باراناوی", "09d"],
+                    71: ["بەفری سووک", "13d"],
+                    73: ["بەفر بارین", "13d"],
+                    95: ["بروسکە و باران", "11d"]
+                };
+
+                if (weatherMap[code]) {
+                    statusMsg = weatherMap[code][0];
+                    icon = weatherMap[code][1];
+                } else if (code > 70 && code < 80) {
+                    statusMsg = "ئەگەری بەفر";
+                    icon = "13d";
+                }
+
+                document.getElementById('desc').innerText = statusMsg;
+                document.getElementById('weatherIcon').src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+            }
+        } catch (error) {
+            document.getElementById('desc').innerText = "هەڵە لە پەیوەندی سێرڤەر";
+        }
+    }
 }
 </script>
 </body>
