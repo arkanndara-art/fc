@@ -13,18 +13,22 @@
     
     <meta name="author" content="Arkan Dara">
 
-    <meta property="og:title" content="وەرگێڕی فۆنت و فایلەکان - بەخۆڕایی">
-    <meta property="og:description" content="گۆڕینی فۆنتی عەلی بۆ یونیکۆد و بەپێچەوانەوە، لەگەڵ خوێندنەوەی دەقی ناو وێنە و فایل.">
-    <meta property="og:type" content="website">
-<meta property="og:image" content="https://arkanndara-art.github.io/fc/preview.jpg">
-    <meta property="og:url" content="https://arkanndara-art.github.io/fc/">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&family=Lateef&family=Harmattan&family=Reem+Kufi&display=swap" rel="stylesheet">
+                   <meta property="og:title" content="وەرگێڕی فۆنت و فایلەکان - بەخۆڕایی">
+                             <meta property="og:description" content="گۆڕینی فۆنتی عەلی بۆ یونیکۆد و بەپێچەوانەوە، لەگەڵ خوێندنەوەی دەقی ناو وێنە و فایل.">
+                              <meta property="og:type" content="website">
+             <meta property="og:image" content="https://arkanndara-art.github.io/fc/preview.jpg">
+           <meta property="og:url" content="https://arkanndara-art.github.io/fc/">
+         <link rel="icon" type="image/x-icon" href="favicon.ico">
+       <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&family=Lateef&family=Harmattan&family=Reem+Kufi&display=swap" rel="stylesheet">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
+
+
 
     <style>
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; transition: 0.2s; }
         body { background: #f4f7f6; min-height: 100vh; display: flex; flex-direction: column; }
         body.dark-mode { background: #121212; color: #ffffff; }
@@ -162,64 +166,38 @@
 
 .dl-btn:hover { background: #cc0000; }
 .dl-btn:disabled { background: #777; cursor: not-allowed; }
+
+
     </style>
 </head>
+
+
 <body onload="initApp()">
 
     <div id="aboutModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">دەربارەی پڕۆژە</div>
             <div class="modal-body">
-                <p><strong>ناوی گەشەپێدەر:</strong> ئه‌ركان دارا </p>
-                <p><strong>وەشانی پڕۆژەکە:</strong> 1.6</p>
-                <p><strong> دروستکردن:</strong> 2026</p>
-                <p><strong>مافی كۆپیكردن:</strong> پارێزراوه‌</p>
+                <p><strong> ناوی گەشەپێدەر:</strong>ئه‌ركان دارا</p>
+                <p><strong> وه‌شانی پڕۆژه‌:</strong>1.7</p>
+                <p><strong> نوێترین وه‌شان:</strong>22/02/2026</p>
+                <p><strong></strong></p>
                 <hr style="margin: 5px 0; opacity: 1.7;">
                 <p><strong>زانیاری و ئاگاداری:</strong></p>
                 <p> نرخه‌كان كه‌ نوێبوونه‌وه‌ خۆیان دێنه‌ سه‌ر شاشه‌، كلیك له‌سه‌ر كاته‌كه‌ش بكه‌ ئه‌توانی كات دابنێی، هه‌روه‌ها له‌سه‌ر دوگمه‌ی فایلیش 
  هه‌ندێك فایلی PDF هه‌ن له‌ بنه‌ڕه‌تدا به‌ سكانی وێنه‌یی دروستكراون، نه‌ك تێكست، ئه‌و فایلانه‌ ناخوێندرێنه‌وه‌...</p>
             </div>
+
+
             <div class="modal-footer">
                 <button class="close-btn" onclick="toggleAbout()">داخستن</button>
             </div>
         </div>
     </div>
 
-    <div id="fontModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">🎁 فۆنت: نزیكه‌ی 900 فۆنت به‌ كلیكێك دابه‌زێنه‌</div>
-            <div class="modal-body" style="text-align: center;">
-                <p>دەتوانیت باشترین کۆمەڵە فۆنتی کوردی (عەلی، یونیکۆد، گرافیک) بە یەک فایل دابەزێنیت.</p>
-                <br>
-                <a href="https://github.com/arkanndara-art/fc/releases/download/V.1/829.Font.zip" target="_blank" class="btn-download-pro">⬇️ داگرتن </a>
-                <span class="file-info">قەبارەی فایل: ~45MB | جۆر: ZIP</span>
-                <p style="font-size: 13px; color: #555; margin-top: 15px;">
-                    💡 <b>ڕێنمایی:</b> دوای داگرتن، فایلەکە بکەرەوە (Extract) و هەموو فۆنتەکان دیاری بکە و کلیکی ڕاست بکە و <b>Install</b> لێ بدە.
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button class="close-btn" onclick="toggleFontModal()">داخستن</button>
-            </div>
-        </div>
-    </div>
+   
 
-    <div id="c4kModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">✨ دابەزاندنی پاکێج  C4Kurdi</div>
-            <div class="modal-body" style="text-align: center;">
-                <p>هەموو ئەو کەرەستە و فایلە تایبەتانەی بۆ دیزاین و پڕۆژەکانت لە C4Kurdi پێویستتە لێرە دەستت دەکەوێت.</p>
-                <br>
-                <a href="https://github.com/arkanndara-art/fc/releases/tag/v2.c4kurd" target="_blank" class="btn-download-c4k">⬇️ داگرتنی پاکێجی C4Kurdi</a>
-                <span class="file-info">جۆر: ZIP | وەشانی نوێ</span>
-                <p style="font-size: 13px; color: #555; margin-top: 15px;">🚀 <b>تێبینی:</b> كه‌ فایله‌كه‌ دابه‌زی، دواتر زیپه‌كه‌ بكه‌ره‌وه‌ و Extractبكه‌ و دواتر Install دابگره‌.</p>
-            </div>
-            <div class="modal-footer">
-                <button class="close-btn" onclick="toggleC4kModal()">داخستن</button>
-            </div>
-        </div>
-    </div>
-
-<div id="timeModal" class="modal">
+<div id="timeModal" class="modal"> 
     <div class="modal-content">
         <div class="modal-header">بەروار و دیاریكردنی كات </div>
         <div class="modal-body" style="text-align: center;">
@@ -230,12 +208,9 @@
             
             <div id="timerDisplay" style="font-size: 40px; font-weight: bold; color: #2e7d32; margin: 15px 0;">00:00</div>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
-                <button onclick="runTimer(5)" style="background:#4caf50;">5 خولەک</button>
                 <button onclick="runTimer(10)" style="background:#4caf50;">10 خولەک</button>
                 <button onclick="runTimer(15)" style="background:#4caf50;">15 خولەک</button>
                 <button onclick="runTimer(20)" style="background:#4caf50;">20 خولەک</button>
-                <button onclick="runTimer(25)" style="background:#4caf50;">25 خولەک</button>
-                <button onclick="runTimer(30)" style="background:#4caf50;">30 خولەک</button>
             </div>
             <button onclick="resetTimer()" style="width:100%; margin-top:10px; background:#f44336;">ڕاگرتنی كات</button>
         </div>
@@ -243,31 +218,40 @@
             <button class="close-btn" onclick="toggleTimeModal()">داخستن</button>
         </div>
     </div>
+
+</div>
 </div>
 
     <div class="header">
         <div class="h-right" id="clock">...</div>
         <div class="h-buttons-area">
-            <button class="btn-nav btn-nav-font" onclick="toggleFontModal()">🎁  فۆنت</button>
-            <button class="btn-nav btn-nav-c4k" onclick="toggleC4kModal()">✨  C4Kurdi</button>
-<button class="btn-nav btn-nav-dl" onclick="toggleDlModal()">📥 داگرتن</button>
+
         </div>
         <div class="h-center">
             <h1>وەرگێڕی فۆنت و فایل</h1>
             <span>Arkan Dara</span>
         </div>
+
+
         <div style="flex: 1;"></div>
         <div class="h-left">
-            <select class="stat-item" id="fontSelect" onchange="changeFont()" style="border:none; outline:none;">
+                 <button class="btn-nav btn-nav-dl" onclick="toggleDlModal()">📥 داگرتن</button>
+
+
+                 <select class="stat-item" id="fontSelect" onchange="changeFont()" style="border:none; outline:none;">
                 <option value="'Noto Sans Arabic', sans-serif">فۆنتی نۆتۆ</option>
                 <option value="'Amiri', serif">فۆنتی ئەمیری</option>
                 <option value="'Lateef', cursive">فۆنتی لەتیف</option>
                 <option value="'Reem Kufi', sans-serif">فۆنتی ڕیم کوفی</option>
             </select>
+
+
             <div class="font-ctrl">
                 <button class="font-btn" onclick="changeFontSize(2)">A+</button>
                 <button class="font-btn" onclick="changeFontSize(-2)">A-</button>
             </div>
+
+
             <div class="market-wrap">
                 <div class="stat-item" onclick="toggleM()">📊 بۆرسە</div>
                 <div id="mDrop" class="market-drop">
@@ -278,7 +262,10 @@
                     <div id="oil-basra" style="border:none;">🇮🇶 بەسڕە: ...</div>
                 </div>
             </div>
-<div class="stat-item" id="weather" onclick="toggleWeatherModal()" style="cursor: pointer;">🌡️ --°C</div>         
+
+
+
+
    <div class="stat-item" id="textStats">وشە: ٠</div>
             <div style="cursor:pointer; font-size:18px;" onclick="toggleT()">🌙</div>
             <div style="cursor:pointer; font-size:18px;" onclick="toggleAbout()">ℹ️</div>
@@ -288,26 +275,19 @@
     <div class="container">
         <textarea id="textBox" oninput="updateStats()" placeholder="لێره‌ بنووسه‌ یان ده‌قێك دابنێ..."></textarea>
         <div class="btn-group">
-            <button class="btn-uni" onclick="convert('toUni')">✨ یونیکۆد</button>
-            <button class="btn-ali" onclick="convert('toAli')">🔄 عەلی کەی</button>
+            <button class="btn-uni" onclick="convert('toUni')">✨ بیگۆڕه‌ بۆ یونیكۆد</button>
+            <button class="btn-ali" onclick="convert('toAli')">🔄 بیگۆڕه‌ بۆ عه‌لی كه‌ی</button>
             <label for="fileInput" class="btn-file" style="cursor:pointer;"> 📁 فایل PDF & Word </label>
             <input type="file" id="fileInput" accept=".pdf,.docx" style="display:none;">
-            <button class="btn-copy" onclick="copyText()">📋 کۆپی</button>
-            <button class="btn-clear" onclick="clearText()">🗑️ سڕینەوە</button>
+            <button class="btn-copy" onclick="copyText()">📋 کۆپی بكه‌</button>
+            <button class="btn-clear" onclick="clearText()">🗑️ بیسڕه‌وه‌</button>
         </div>
     </div>
     <div id="status"></div>
 
 <div id="weatherModal" class="modal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
     <div style="background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; margin: 15% auto; padding: 25px; border-radius: 20px; width: 280px; text-align: center; position: relative;">
-        <span onclick="toggleWeatherModal()" style="position: absolute; right: 15px; top: 10px; font-size: 28px; cursor: pointer;">&times;</span>
-        <h3 id="cityName">📍 Sulaymaniyah</h3>
-        <img id="weatherIcon" src="" style="width: 80px;">
-        <div id="temp" style="font-size: 3rem; font-weight: bold; margin: 10px 0;">--°C</div>
-        <div id="desc" style="margin-bottom: 15px;">بارودۆخ</div>
-        <div style="display: flex; justify-content: space-around; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px;">
-            <span>💧 شێ: <b id="humidity">--%</b></span>
-            <span>💨 با: <b id="wind">-- km/h</b></span>
+        <span onclick="toggleWeatherModal()" style="position: absolute; right: 15px; top: 10px; font-size: 28px; cursor: 
         </div>
     </div>
 </div>
@@ -326,7 +306,12 @@
         </div>
     </div>
 </div>
+
+
+
+
 <script>
+
 // --- مامەڵەکردن لەگەڵ فایلەکان ---
 document.getElementById('fileInput').addEventListener('change', function(e) {
     const file = e.target.files[0];
@@ -368,19 +353,23 @@ document.getElementById('fileInput').addEventListener('change', function(e) {
     }
 });
 
+
+
+
 // --- وەرگێڕی فۆنت ---
 const conversionMap = [
-    { uni: 'ڵا', ali: 'لآ' }, { uni: 'ڵا', ali: 'ڵا' },
-    { uni: 'ێ', ali: 'يَ' }, { uni: 'ێ', ali: 'ێ' },
-    { uni: 'ۆ', ali: 'ؤ' }, { uni: 'ۆ', ali: 'ۆ' },  { uni: 'ۆ', ali: 'وَ' }, 
-    { uni: 'ڵ', ali: 'لَ' }, { uni: 'ڵ', ali: 'ڵ' },
-    { uni: 'ڕ', ali: 'رِ' }, { uni: 'ڕ', ali: 'ڕ' },
-    { uni: 'پ', ali: 'ث' }, { uni: 'چ', ali: 'ض' }, 
-    { uni: 'ژ', ali: 'ذ' }, { uni: 'ڤ', ali: 'ظ' }, 
-    { uni: 'گ', ali: 'ط' }, { uni: 'ه‌', ali: 'ة' },  { uni: 'ە', ali: 'ه‌' },    { ali: 'ة', uni: 'ه‌' },
+      { uni: 'ڵا', ali: 'لآ' },  { uni: 'ڵا', ali: 'لأ' },    { uni: 'قه‌واره‌ی زایۆنی', ali: 'ئيسرِائيل' }, 
+    { uni: 'ێ', ali: 'يَ' }, { uni: 'ڤ', ali: 'ظ' },  { ali: 'ة', uni: 'ه‌' },
+    { uni: 'ۆ', ali: 'ؤ' },   { uni: 'ۆ', ali: 'وَ' },   { uni: 'ژ', ali: 'ذ' }, 
+    { uni: 'ڵ', ali: 'لَ' },  { uni: 'و‌', ali: 'ُ' },
+    { uni: 'ڕ', ali: 'رِ' },  { uni: 'پ', ali: 'ث' },   { uni: 'چ', ali: 'ض' },  
+    { uni: 'گ', ali: 'ط' }, { uni: 'ه‌', ali: 'ة' },   { uni: 'ە', ali: 'ه‌' },
     { uni: 'ی', ali: 'ي' }, { uni: 'ک', ali: 'ك' },
-    { uni: 'وو', ali: 'و‌و' },
+    
 ];
+
+
+
 
 function convert(type) {
     let box = document.getElementById("textBox");
@@ -413,7 +402,6 @@ async function updateMarket() {
         const goldRes = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=PAXGUSDT');
         const goldData = await goldRes.json();
         document.getElementById('gold').innerText = `🟡 زێڕ: $${parseFloat(goldData.price).toLocaleString()}`;
-
         const fetchOil = async (symbol) => {
             const res = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent(`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}`));
             const data = JSON.parse((await res.json()).contents);
@@ -437,13 +425,6 @@ async function updateMarket() {
     } catch (e) {}
 }
 
-async function updateWeather() {
-    try {
-        const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=35.56&longitude=45.42&current_weather=true`);
-        const d = await r.json();
-        document.getElementById('weather').innerText = `🌡️ ${Math.round(d.current_weather.temperature)}°C`;
-    } catch(e){}
-}
 
 function updateStats() {
     const textarea = document.getElementById('textBox');
@@ -556,7 +537,7 @@ const n = new Date();
     let a = Math.floor(y / 100);
     let b = 2 - a + Math.floor(a / 4);
     let jd = Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + day + b - 1524;
-    let z = jd - 1948440;
+    let z = jd - 1948440 + 1;
     let i_year = Math.floor((z - 1) / 354.367);
     let i_month = Math.floor((z - Math.floor(i_year * 354.367) - 0.5) / 29.5);
     let i_day = Math.floor(z - Math.floor(i_year * 354.367) - Math.floor(i_month * 29.5));
@@ -594,7 +575,9 @@ function resetTimer() {
     document.getElementById('timerDisplay').innerText = "00:00";
     showStatus("⏹️ كات ڕاگیرا");
 
-} // لێرەدا فەنکشنی ڕیسێت تەواو دەبێت
+} 
+
+// لێرەدا فەنکشنی ڕیسێت تەواو دەبێت
 async function toggleWeatherModal() {
     const modal = document.getElementById('weatherModal');
     const isVisible = (modal.style.display === 'block');
@@ -608,48 +591,10 @@ async function toggleWeatherModal() {
         try {
             const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=35.56&longitude=45.42&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&timezone=auto`);
             const data = await res.json();
+        } 
 
-            if (data.current) {
-                const temp = Math.round(data.current.temperature_2m);
-                const humid = data.current.relative_humidity_2m;
-                const wind = data.current.wind_speed_10m;
-                const code = data.current.weather_code;
 
-                document.getElementById('cityName').innerText = `📍 سلێمانی`;
-                document.getElementById('temp').innerText = `${temp}°C`;
-                document.getElementById('humidity').innerText = `${humid}%`;
-                document.getElementById('wind').innerText = `${wind} km/h`;
-                
-                // ڕێكخستنەوەی وەسفەکان بەپێی کۆدە جیهانییەکان (WMO Codes)
-                let statusMsg = "ئاسمانی ساماڵ";
-                let icon = "01d";
-
-                const weatherMap = {
-                    0: ["ئاسمانی ساماڵ", "01d"],
-                    1: ["کەمێک هەور", "02d"],
-                    2: ["نیمچە هەور", "03d"],
-                    3: ["هەوراوی", "04d"],
-                    45: ["تەمومژ", "50d"],
-                    48: ["تەم و مژی بەستوو", "50d"],
-                    51: ["نەرمە باران", "10d"],
-                    61: ["باراناوی", "09d"],
-                    71: ["بەفری سووک", "13d"],
-                    73: ["بەفر بارین", "13d"],
-                    95: ["بروسکە و باران", "11d"]
-                };
-
-                if (weatherMap[code]) {
-                    statusMsg = weatherMap[code][0];
-                    icon = weatherMap[code][1];
-                } else if (code > 70 && code < 80) {
-                    statusMsg = "ئەگەری بەفر";
-                    icon = "13d";
-                }
-
-                document.getElementById('desc').innerText = statusMsg;
-                document.getElementById('weatherIcon').src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
-            }
-        } catch (error) {
+catch (error) {
             document.getElementById('desc').innerText = "هەڵە لە پەیوەندی سێرڤەر";
         }
     }
@@ -704,6 +649,7 @@ function processDownload() {
         btn.innerText = "داگرتن";
     }
 }
+
 </script>
 </body>
 </html>
