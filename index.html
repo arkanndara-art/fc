@@ -223,29 +223,29 @@
 .news-ticker {
     display: flex;
     align-items: center;
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.08);
     border-radius: 8px;
-    padding: 4px 10px;
+    padding: 2px 5px;
     margin-top: 5px;
     max-width: 100%;
     overflow: hidden;
 }
 .dark-mode .news-ticker { background: rgba(255, 255, 255, 0.1); }
 .news-badge {
-    background: #ff0000;
+    background: #4caf50;
     color: white;
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
-    margin-left: 10px;
+    margin-left: 5px;
     white-space: nowrap;
 }
 #news-text {
     font-size: 13px;
     color: inherit;
-    text-decoration: none;
-    white-space: nowrap;
+    text-decoration: #f8f9fa;
+    white-space: #f8f9fa;
     overflow: hidden;
     text-overflow: ellipsis;
     transition: opacity 0.5s;
@@ -265,12 +265,11 @@
             <div class="modal-body">
                 <p><strong>ناوی گەشەپێدەر:</strong> ئه‌ركان دارا </p>
                 <p><strong>وەشانی پڕۆژەکە:</strong> 1.6</p>
-                <p><strong> دروستکردن:</strong> 2026</p>
+                <p><strong> دواین وه‌شان:</strong> 23/02/2026 </p>
                 <p><strong>مافی كۆپیكردن:</strong> پارێزراوه‌</p>
-                <hr style="margin: 5px 0; opacity: 1.7;">
+                <hr style="margin: 5px 0; opacity: 1.8;">
                 <p><strong>زانیاری و ئاگاداری:</strong></p>
-                <p> نرخه‌كان كه‌ نوێبوونه‌وه‌ خۆیان دێنه‌ سه‌ر شاشه‌، كلیك له‌سه‌ر كاته‌كه‌ش بكه‌ ئه‌توانی كات دابنێی، هه‌روه‌ها له‌سه‌ر دوگمه‌ی فایلیش 
- هه‌ندێك فایلی PDF هه‌ن له‌ بنه‌ڕه‌تدا به‌ سكانی وێنه‌یی دروستكراون، نه‌ك تێكست، ئه‌و فایلانه‌ ناخوێندرێنه‌وه‌...</p>
+                <p> نرخه‌كان كه‌ نوێبوونه‌وه‌ خۆیان دێنه‌ سه‌ر شاشه‌،مانشێتی هه‌واڵه‌كانیش نوێترینن و خۆیان نوێ ده‌بنه‌وه‌...</p>
             </div>
 
             <div class="modal-footer">
@@ -304,10 +303,7 @@
     </div>
 </div>
 
-   <div class="news-ticker">
-        <span class="news-badge">مانشێتی گرینگترین هه‌واڵه‌كان</span>
-        <a href="#" id="news-text" target="_blank">چاوەڕێی مانشێتی هەواڵەکان بن...</a>
-    </div>
+  
 
 
     <div class="header">
@@ -359,18 +355,26 @@
    <div class="stat-item" id="textStats">وشە: ٠</div>
             <div style="cursor:pointer; font-size:18px;" onclick="toggleT()">🌙</div>
             <div style="cursor:pointer; font-size:18px;" onclick="toggleAbout()">ℹ️</div>
+
+
         </div>
     </div>
+
+<div class="news-ticker">
+        <span class="news-badge">مانشێتی گرینگترین هه‌واڵه‌كان</span>
+        <a href="#" id="news-text" target="_blank">چاوەڕێی مانشێتی هەواڵەکان بن...</a>
+    </div>
+
 
     <div class="container">
         <textarea id="textBox" oninput="updateStats()" placeholder="لێره‌ بنووسه‌ یان ده‌قێك دابنێ..."></textarea>
         <div class="btn-group">
-            <button class="btn-uni" onclick="convert('toUni')">✨ یونیکۆد</button>
-            <button class="btn-ali" onclick="convert('toAli')">🔄 عەلی کەی</button>
-            <label for="fileInput" class="btn-file" style="cursor:pointer;"> 📁 فایل PDF & Word </label>
+            <button class="btn-uni" onclick="convert('toUni')">✨ گۆڕین بۆ یونیکۆد</button>
+            <button class="btn-ali" onclick="convert('toAli')">🔄 گۆڕین بۆ عەلی کەی</button>
+            <label for="fileInput" class="btn-file" style="cursor:pointer;"> 📁 فایلی WORD بهێنه‌ </label>
             <input type="file" id="fileInput" accept=".pdf,.docx" style="display:none;">
-            <button class="btn-copy" onclick="copyText()">📋 کۆپی</button>
-            <button class="btn-clear" onclick="clearText()">🗑️ سڕینەوە</button>
+            <button class="btn-copy" onclick="copyText()">📋 كۆپی بكه‌</button>
+            <button class="btn-clear" onclick="clearText()">🗑️ بیسڕه‌وه‌</button>
 <button class="btn-nav btn-nav-dl" onclick="toggleDlModal()">📥 داگرتنی ڤیدیۆ</button>
 
         </div>
@@ -442,11 +446,11 @@ document.getElementById('fileInput').addEventListener('change', function(e) {
 
 // --- وەرگێڕی فۆنت ---
 const conversionMap = [
-    { uni: 'ڵا', ali: 'لآ' }, { uni: 'ڵا', ali: 'ڵا' },
-    { uni: 'ێ', ali: 'يَ' }, { uni: 'ێ', ali: 'ێ' },
+    { uni: 'ڵا', ali: 'لآ' }, { uni: 'ڵا', ali: 'لأ' },
+    { uni: 'ێ', ali: 'يَ' }, { uni: 'و', ali: 'ُ' },
     { uni: 'ۆ', ali: 'ؤ' }, { uni: 'ۆ', ali: 'ۆ' },  { uni: 'ۆ', ali: 'وَ' }, 
     { uni: 'ڵ', ali: 'لَ' }, { uni: 'ڵ', ali: 'ڵ' },
-    { uni: 'ڕ', ali: 'رِ' }, { uni: 'ڕ', ali: 'ڕ' },
+    { uni: 'ڕ', ali: 'رِ' }, { uni: 'ڕ', ali: 'رَ' },
     { uni: 'پ', ali: 'ث' }, { uni: 'چ', ali: 'ض' }, 
     { uni: 'ژ', ali: 'ذ' }, { uni: 'ڤ', ali: 'ظ' }, 
     { uni: 'گ', ali: 'ط' }, { uni: 'ه‌', ali: 'ة' },  { uni: 'ە', ali: 'ه‌' },    { ali: 'ة', uni: 'ه‌' },
@@ -722,13 +726,13 @@ function processDownload() {
 
 
   const rssSources = [
-    { name: 'الجزيرة', url: 'https://www.aljazeera.net/aljazeerarss.aspx?categoryid=31' },
-    { name: 'Sky News', url: 'https://www.skynewsarabia.com/rss' },
+    { name: 'الجزيرة', url: 'https://www.aljazeera.net/rss' },
+    { name: 'سكاى نيوز', url: 'https://www.skynewsarabia.com/rss' },
     { name: 'RT Arabic', url: 'https://arabic.rt.com/rss/' },
-    { name: 'شفق نيوز', url: 'https://shafaq.com/ar/rss' },
-    { name: 'السومرية', url: 'https://www.alsumaria.tv/rss/' },
+    { name: 'فرانس 24', url: 'https://www.france24.com/ar/rss' },
+    { name: 'الحرة', url: 'https://www.alhurra.com/rss' },
     { name: 'بغداد اليوم', url: 'https://baghdadtoday.news/rss' },
-    { name: 'ڕووداو', url: 'https://www.rudaw.net/sorani/rss' }
+    { name: 'عربي جديد', url: 'https://www.alaraby.co.uk/rss' }
 ];
 
 async function getNews() {
