@@ -728,9 +728,10 @@ function processDownload() {
   const rssSources = [
     { name: 'الجزيرة', url: 'https://www.aljazeera.net/rss' },
     { name: 'سكاى نيوز', url: 'https://www.skynewsarabia.com/rss' },
-    { name: 'RT Arabic', url: 'https://arabic.rt.com/rss/' },
+    { name: 'روسیا الیوم', url: 'https://arabic.rt.com/rss/' },
     { name: 'فرانس 24', url: 'https://www.france24.com/ar/rss' },
     { name: 'الحرة', url: 'https://www.alhurra.com/rss' },
+    { name: 'ڕووداو', url: 'https://www.rudaw.net/rss' },
     { name: 'بغداد اليوم', url: 'https://baghdadtoday.news/rss' },
     { name: 'عربي جديد', url: 'https://www.alaraby.co.uk/rss' }
 ];
@@ -762,7 +763,7 @@ async function getNews() {
 
     if (allItems.length > 0) {
         // تێکەڵکردنی هەواڵەکان
-        allItems.sort(() => Math.random() - 0.5);
+        allItems.sort(() => Math.random() - 0.7);
 
         let index = 0;
         const updateDisplay = () => {
@@ -778,9 +779,9 @@ async function getNews() {
         };
 
         updateDisplay();
-        setInterval(updateDisplay, 6000); // ٦ چرکە بۆ ئەوەی کاتی خوێندنەوەی هەبێت
+        setInterval(updateDisplay, 7000); // 7 چرکە بۆ ئەوەی کاتی خوێندنەوەی هەبێت
     } else {
-        textElement.textContent = "چاوەڕێی بارکردنی هەواڵەکان بن...";
+        textElement.textContent = "چاوەڕێی مانشێتی هەواڵەکان بن...";
     }
 }
 
