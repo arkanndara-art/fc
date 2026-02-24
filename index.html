@@ -447,15 +447,19 @@ document.getElementById('fileInput').addEventListener('change', function(e) {
 // --- وەرگێڕی فۆنت ---
 const conversionMap = [
     { uni: 'ڵا', ali: 'لآ' }, { uni: 'ڵا', ali: 'لأ' },
-    { uni: 'ێ', ali: 'يَ' }, { uni: 'و', ali: 'ُ' },
-    { uni: 'ۆ', ali: 'ؤ' }, { uni: 'ۆ', ali: 'ۆ' },  { uni: 'ۆ', ali: 'وَ' }, 
+    { uni: 'ێ', ali: 'يَ' }, { uni: 'ۆ', ali: 'وَ' }, 
+    { uni: 'ۆ', ali: 'ؤ' }, 
     { uni: 'ڵ', ali: 'لَ' }, { uni: 'ڵ', ali: 'ڵ' },
     { uni: 'ڕ', ali: 'رِ' }, { uni: 'ڕ', ali: 'رَ' },
     { uni: 'پ', ali: 'ث' }, { uni: 'چ', ali: 'ض' }, 
     { uni: 'ژ', ali: 'ذ' }, { uni: 'ڤ', ali: 'ظ' }, 
     { uni: 'گ', ali: 'ط' }, { uni: 'ه‌', ali: 'ة' },  { uni: 'ە', ali: 'ه‌' },    { ali: 'ة', uni: 'ه‌' },
     { uni: 'ی', ali: 'ي' }, { uni: 'ک', ali: 'ك' },
-    { uni: 'وو', ali: 'و‌و' },
+    { uni: '٠', ali: '0' }, { uni: '١', ali: '1' }, 
+   { uni: '٢', ali: '2' }, { uni: '٣', ali: '3' }, 
+   { uni: '٤', ali: '4' }, { uni: '٥', ali: '5' }, 
+       { uni: '٦', ali: '6' }, { uni: '٧', ali: '7' }, 
+       { uni: '٨', ali: '8' }, { uni: '٩', ali: '9' }, 
 ];
 
 function convert(type) {
