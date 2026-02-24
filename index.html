@@ -21,6 +21,9 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&family=Lateef&family=Harmattan&family=Reem+Kufi&display=swap" rel="stylesheet">
     
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js">
 
 </script>
@@ -402,47 +405,78 @@
 
 
 <script>
+// ڕێکخستنی وۆرکەری PDF.js (ئەمە زۆر گرنگە بۆ ئەوەی ئیش بکات)
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-// --- مامەڵەکردن لەگەڵ فایلەکان ---
-document.getElementById('fileInput').addEventListener('change', function(e) {
+document.getElementById('fileInput').addEventListener('change', async function(e) {
     const file = e.target.files[0];
     if (!file) return;
-    const reader = new FileReader();
-    const extension = file.name.split('.').pop().toLowerCase();
 
-    if (extension === 'pdf') {
-        reader.onload = function() {
-            const typedarray = new Uint8Array(this.result);
-            pdfjsLib.getDocument(typedarray).promise.then(pdf => {
-                let text = "";
-                let count = pdf.numPages;
-                let pagesPromises = [];
-                for (let i = 1; i <= count; i++) {
-                    pagesPromises.push(pdf.getPage(i).then(page => 
-                        page.getTextContent().then(content => content.items.map(item => item.str).join(" "))
-                    ));
-                }
-                Promise.all(pagesPromises).then(pagesText => {
-                    document.getElementById('textBox').value = pagesText.join("\n");
-                    updateStats();
-                    showStatus("📄 فایلی PDF خوێندرایەوە");
-                });
-            });
-        };
-        reader.readAsArrayBuffer(file);
-    } 
-    else if (extension === 'docx') {
-        reader.onload = function(e) {
-            mammoth.extractRawText({arrayBuffer: e.target.result})
-                .then(result => {
-                    document.getElementById('textBox').value = result.value;
-                    updateStats();
-                    showStatus("📄 فایلی Word خوێندرایەوە");
-                });
-        };
-        reader.readAsArrayBuffer(file);
+    const extension = file.name.split('.').pop().toLowerCase();
+    showStatus("خەریکە فایلەکە دەخوێنمەوە... 🔄");
+
+    try {
+        if (extension === 'pdf') {
+            await readPDF(file);
+        } 
+        else if (extension === 'docx') {
+            await readDocx(file);
+        } 
+        else if (extension === 'txt') {
+            await readText(file);
+        }
+        else {
+            alert("تکایە تەنها فایلی PDF یان Word هەڵبژێرە.");
+        }
+    } catch (error) {
+        console.error(error);
+        showStatus("هەڵەیەک ڕوویدا لە کاتی خوێندنەوەی فایلەکە ❌");
     }
 });
+
+// فەنکشن بۆ خوێندنەوەی PDF
+async function readPDF(file) {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    let fullText = "";
+
+    for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        const pageText = content.items.map(item => item.str).join(" ");
+        fullText += pageText + "\n\n";
+    }
+
+    document.getElementById('textBox').value = fullText;
+    finalizeTask("📄 فایلی PDF بە سەرکەوتوویی خوێندرایەوە");
+}
+
+// فەنکشن بۆ خوێندنەوەی Word
+async function readDocx(file) {
+    const arrayBuffer = await file.arrayBuffer();
+    const result = await mammoth.extractRawText({ arrayBuffer: arrayBuffer });
+    
+    document.getElementById('textBox').value = result.value;
+    finalizeTask("📝 فایلی Word بە سەرکەوتوویی خوێندرایەوە");
+}
+
+// فەنکشن بۆ خوێندنەوەی فایلی دەقی ئاسایی (تێبینی: بۆ پشتگیری کوردی)
+async function readText(file) {
+    const text = await file.text();
+    document.getElementById('textBox').value = text;
+    finalizeTask("📄 فایلی دەقی خوێندرایەوە");
+}
+
+function finalizeTask(msg) {
+    if (typeof updateStats === "function") updateStats();
+    showStatus(msg);
+}
+
+function showStatus(msg) {
+    const statusEl = document.getElementById('statusDisplay'); // دڵنیابە ئەم ئایدیەت هەیە
+    if(statusEl) statusEl.innerText = msg;
+    else console.log(msg);
+}
 
 // --- وەرگێڕی فۆنت ---
 const conversionMap = [
